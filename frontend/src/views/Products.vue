@@ -4,27 +4,19 @@
     <div class="product__container">
       <h1 class="product__category">{{returnedCategory}}</h1>
     </div>
-    <div class="product__container">
-      <div class="product" v-for="product in products" :key="product.id">
-        <the-product
-          :photos="product.photos"
-          :name="product.name"
-          :price="product.price"
-          :description="product.description"
-        />
-      </div>
-    </div>
+    <TheProductList :products="products" />
     <!-- NOTA*** - ACIMA passando props para componente filho -->
   </main>
 </template>
  
  <script>
-import TheProduct from "@/components/TheProduct.vue";
+import TheProductList from "@/components/TheProductList.vue";
+
 import { api } from "@/services.js";
 export default {
   name: "Products",
   components: {
-    TheProduct
+    TheProductList
   },
   /* NOTA***  -  a props 'categorie' deve ser registrada na view de destino que é chamada através da rota
    /products/:categorie */
@@ -32,7 +24,6 @@ export default {
   data() {
     return {
       title: "La Femme",
-      oNome: "Emerson",
       products: {}
     };
   },

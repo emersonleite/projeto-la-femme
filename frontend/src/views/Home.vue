@@ -4,27 +4,18 @@
     <div class="product__container">
       <h1 class="product__category">{{title}}</h1>
     </div>
-    <div class="product__container">
-      <div v-for="product in products" :key="product.id">
-        <the-product
-          :photos="product.photos"
-          :name="product.name"
-          :price="product.price"
-          :description="product.description"
-        />
-      </div>
-    </div>
+    <TheProductList :products="products" />
     <!-- NOTA*** - ACIMA passando props para componente filho -->
   </main>
 </template>
  
  <script>
-import TheProduct from "@/components/TheProduct.vue";
+import TheProductList from "@/components/TheProductList.vue";
 import { api } from "@/services.js";
 export default {
   name: "Home",
   components: {
-    TheProduct
+    TheProductList
   },
   data() {
     return {
@@ -35,9 +26,10 @@ export default {
   watch: {},
   methods: {
     getProducts() {
-      api
-        .get("http://localhost:1337/products")
-        .then(response => (this.products = response));
+      api.get("http://localhost:1337/products").then(response => {
+        console.log(response);
+        this.products = response;
+      });
     }
   },
   computed: {},

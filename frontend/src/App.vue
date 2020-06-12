@@ -35,6 +35,7 @@ $primary-font: "Maven Pro";
 /* mixins */
 @mixin container {
   display: flex;
+  flex-wrap: wrap;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -152,14 +153,100 @@ body {
 .product__container {
   @include container;
   margin-top: 50px;
-  border: solid 1px white;
+  /* border: solid 1px white; */
 }
 
 .product {
-  flex: 1;
-  max-width: 25.33%;
-  margin-left: 6%;
-  margin-right: 6%;
+  width: 25.33%;
+  font-family: $primary-font;
+  font-weight: bold;
+  margin-bottom: 70px;
+  &:nth-child(3n + 2) {
+    margin-left: 12%;
+    margin-right: 12%;
+  }
+  .product__image {
+    display: block;
+    max-width: 100%;
+    border-top-left-radius: 30px;
+  }
+  .product__name {
+    color: #fff;
+    font-size: 1.875rem;
+    padding: 15px;
+    text-align: center;
+  }
+  .product__button {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    box-shadow: 2px 2px 1px rgba($color: #000000, $alpha: 0.3);
+    z-index: 9;
+    .product__button--add,
+    .product__button--takeout {
+      background-color: #707070;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 2.25rem;
+      line-height: none;
+      padding: 0;
+      &:hover {
+        transform: scale(1.07);
+        background-color: #707070 - #101010;
+        z-index: 99;
+      }
+    }
+
+    .product__button--add {
+      border-left: solid 1.5px #fff;
+    }
+
+    .product__button--takeout {
+      border-right: solid 1.5px #fff;
+    }
+
+    .product__button--add,
+    .product__button--takeout {
+      flex: 1;
+      height: 36px;
+    }
+    .product__price {
+      background-color: $secondary-color;
+      border: none;
+      font-size: 1.25rem;
+      flex: 2;
+      padding: 6px;
+      text-align: center;
+    }
+  }
+
+  .product__amount {
+    border: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    height: 36px;
+    width: 20%;
+    text-align: center;
+  }
+  .product__button--cart {
+    background-color: $secondary-color;
+    border: none;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    color: #fff;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px;
+    width: 100%;
+    z-index: 1;
+    &:hover {
+      background-color: $secondary-color - #101010;
+      transform: scale(1.02);
+    }
+  }
 }
 
 /* end product */

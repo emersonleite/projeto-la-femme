@@ -27,7 +27,7 @@ export default {
   methods: {
     getProducts() {
       api.get("http://localhost:1337/products").then(response => {
-        console.log(response);
+        /* console.log(response); */
         this.products = response;
       });
     }

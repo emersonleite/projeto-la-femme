@@ -1,5 +1,7 @@
  <template>
-  <div class="header__cart">C | 3</div>
+  <div class="header__cart">
+    <span>Carrinho</span> | 3
+  </div>
 </template>
  
  <script>

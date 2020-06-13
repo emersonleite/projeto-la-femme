@@ -37,7 +37,7 @@ export default {
         .then(response => response.json())
         .then(response => {
           this.navigation_items = response;
-          console.log(this.navigation_items);
+          /* console.log(this.navigation_items); */
         });
     }
   },

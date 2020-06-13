@@ -3,17 +3,20 @@
     <TheHeader />
     <TheNavigation />
     <router-view></router-view>
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheHeader from "@/components/TheHeader.vue";
 import TheNavigation from "@/components/TheNavigation.vue";
+import TheFooter from "@/components/TheFooter.vue";
 export default {
   name: "App",
   components: {
     TheHeader,
-    TheNavigation
+    TheNavigation,
+    TheFooter
   }
 };
 </script>
@@ -75,6 +78,9 @@ body {
 /* header */
 .header {
   background-color: $primary-color;
+  position: sticky;
+  top: 0;
+  z-index: 999;
   .header__logo {
     color: #ffffff;
     cursor: pointer;
@@ -87,7 +93,15 @@ body {
     color: #fff;
     margin: auto 0;
     font-size: 1rem;
-    font-family: $primary-font;
+    span {
+      cursor: pointer;
+      font-family: $logo-font;
+      font-size: 2.2rem;
+      margin-right: 10px;
+      &:hover {
+        color: $secondary-color + #454545;
+      }
+    }
   }
 }
 .header__container {
@@ -246,6 +260,32 @@ body {
       background-color: $secondary-color - #101010;
       transform: scale(1.02);
     }
+  }
+}
+
+.footer {
+  background-color: $secondary-color;
+}
+.footer__container {
+  @include container;
+  color: #fff;
+  font-family: $primary-font;
+  align-items: center;
+  .footer__logo {
+    flex: 1;
+    font-size: 2.5rem;
+    font-family: $logo-font;
+    padding: 11px;
+    text-align: center;
+  }
+  .footer__copyright {
+    font-weight: bold;
+    font-size: 1.25rem;
+    flex: 1;
+  }
+  .footer__social {
+    flex: 1;
+    text-align: right;
   }
 }
 

@@ -1,11 +1,22 @@
  <template>
   <div class="header__cart">
-    <span>Carrinho</span> | 3
+    <span>Meu carrinho</span>
+    <span>| {{total| toCurrencyBRL}}</span>
   </div>
 </template>
  
  <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  name: "TheCart",
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["total"])
+  },
+  created() {}
+};
 </script>
  
  <style>

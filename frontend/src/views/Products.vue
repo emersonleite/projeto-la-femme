@@ -1,9 +1,7 @@
  <template>
   <main>
     <!-- NOTA*** Utilização do nome da categoria retornada como título da seção -->
-    <div class="product__container">
-      <h1 class="product__category">{{returnedCategory}}</h1>
-    </div>
+    <TitleSection :title="returnedCategory" />
     <TheProductList :products="products" />
     <!-- NOTA*** - ACIMA passando props para componente filho -->
   </main>
@@ -11,12 +9,14 @@
  
  <script>
 import TheProductList from "@/components/TheProductList.vue";
+import TitleSection from "@/components/TitleSection.vue";
 
 import { api } from "@/services.js";
 export default {
   name: "Products",
   components: {
-    TheProductList
+    TheProductList,
+    TitleSection
   },
   /* NOTA***  -  a props 'categorie' deve ser registrada na view de destino que é chamada através da rota
    /products/:categorie */

@@ -1,7 +1,7 @@
  <template>
   <section class="productDetail__section" style="min-height: 100vh">
     <!-- <TitleSection :title="product.name" /> -->
-    <div class="productDetail__container">
+    <div v-if="product" class="productDetail__container">
       <div class="productDetail__image">
         <img :src="`http://localhost:1337${product.photos[0].url}`" :alt="product.name" />
       </div>
@@ -10,12 +10,21 @@
         <p class="productDetail__description">{{product.description}}</p>
         <h3 class="productDetail__size">Tamanhos</h3>
         <div class="product__button">
-          <button @click="amount--" class="product__button--takeout">-</button>
+          <button
+            :disabled="amount === 0"
+            @click="amount--"
+            :class="{'product__button--takeout-disabled': amount === 0}"
+            class="product__button--takeout"
+          >-</button>
           <button @click="amount++" class="product__button--add">+</button>
           <input class="product__amount" type="text" name="amount" v-model="amount" />
           <span class="product__price">{{product.price | toCurrencyBRL}}</span>
         </div>
-        <button class="product__button--cart" @click="add_product_to_cart(product_to_cart, $event)">
+        <button
+          :disabled="amount === 0"
+          class="product__button--cart"
+          @click="add_product_to_cart(product_to_cart, $event)"
+        >
           Adicionar ao
           <br />carrinho
         </button>
@@ -26,11 +35,15 @@
  
  <script>
 import { api } from "@/functions/requests.js";
-import { mapMutations, mapState } from "vuex";
+import { mapMutations /* mapState */ } from "vuex";
 import { changeTextFromElementAfterATime as change } from "@/functions/changeTextFromElementAfterATime.js";
 import { _ } from "@/functions/local.js";
+import { mixinIncreaseDecrease } from "@/functions/mixins.js";
 /* Importando função de soma */
 export default {
+  name: "ProductDetail",
+  mixins: [mixinIncreaseDecrease],
+  props: ["id"],
   data() {
     return {
       product: {},
@@ -39,24 +52,15 @@ export default {
     };
   },
 
-  props: ["id"],
-  name: "ProductDetail",
-  created() {
-    this.getProduct();
-    if (window.localStorage.cart) {
-      let cart = _.from("cart");
-      this.ADD_PRODUCT_TO_CART(cart);
-    }
-  },
   methods: {
+    ...mapMutations(["ADD_PRODUCT_TO_CART"]),
+    /* Função para adicionar produtos ao carrinho. Ela chama uma mutation que é mapeada acima para mudança
+    do 'state' 'cart'. */
     getProduct() {
       api
         .get("http://localhost:1337" + this.$route.fullPath)
         .then(response => (this.product = response));
     },
-    ...mapMutations(["ADD_PRODUCT_TO_CART"]),
-    /* Função para adicionar produtos ao carrinho. Ela chama uma mutation que é mapeada acima para mudança
-    do 'state' 'cart'. */
     add_product_to_cart(product, event) {
       /* 'if' para verificar se a quantidade escolhida do produto é maior que zero e se não está no carrinho*/
       if (
@@ -86,16 +90,16 @@ export default {
         window.setTimeout(() => {
           this.amount = 0;
         }, 1000);
-      } else if (product.amount === 0) {
+      } /* else if (product.amount === 0) {
         window.alert("Por favor, escolha a quantidade a ser comprada");
-      } /* else {
+      } */ /* else {
         window.alert("O produto já está no carrinho.");
       } */
     }
   },
   computed: {
     /* Mapeando o dado do store 'cart' */
-    ...mapState(["total"]),
+    /*  ...mapState(["total"]), */
 
     /* Função retonando o tipo de dado que deve ser adicionado ao carrinho */
     product_to_cart() {
@@ -107,7 +111,16 @@ export default {
         total: this.amount * this.product.price
       };
     }
-  }
+  },
+  created() {
+    console.log("criado");
+    if (window.localStorage.cart) {
+      let cart = _.from("cart");
+      this.ADD_PRODUCT_TO_CART(cart);
+    }
+    this.getProduct();
+  },
+  watch: {}
 };
 </script>
  

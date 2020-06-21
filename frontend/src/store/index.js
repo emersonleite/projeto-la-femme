@@ -14,7 +14,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    total: (state) => {
+    totalCart: (state) => {
       if (state.cart.length > 0) return sum(state.cart, "total");
       else return 0;
     },

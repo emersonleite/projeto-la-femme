@@ -28,8 +28,8 @@ export default {
 /* End Imports */
 
 /* Variables */
-$primary-color: #231a13;
-/* $primary-color: #151515; */
+/* $primary-color: #231a13; */
+$primary-color: #151515;
 $secondary-color: #911e75;
 $logo-font: "Holland";
 $primary-font: "Maven Pro";
@@ -52,6 +52,23 @@ $primary-font: "Maven Pro";
   font-size: 1rem;
   font-weight: bold;
   padding: 8px 16px;
+}
+
+@mixin buttonsAddTakeout {
+  background-color: #707070;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2.25rem;
+  line-height: none;
+  padding: 0;
+  flex: 1;
+  height: 36px;
+  &:hover {
+    transform: scale(1.07);
+    background-color: #707070 - #101010;
+    z-index: 99;
+  }
 }
 /* end mixins */
 
@@ -94,6 +111,101 @@ body {
   margin: 0 auto;
 }
 /* end title section */
+
+/* Cart Items */
+
+table {
+  border-spacing: 0;
+}
+
+tbody tr td {
+  text-align: center;
+  border-top: solid 2px #202020;
+}
+
+table tr th {
+  font-size: 1.5rem;
+  background-color: #4f1140;
+  padding: 10px 15px;
+}
+
+.cartItems__container {
+  @include container;
+  color: #fff;
+  flex-direction: column;
+  font-family: $primary-font;
+  font-size: 1.25rem;
+}
+
+.cartItems__button--remove {
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bolder;
+  width: 30px;
+  height: 30px;
+}
+
+.cartItems__itemName {
+  flex: 1;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.cartItems__itemAmountPrice {
+  text-align: right;
+}
+
+.cartItems__itemAmount {
+  color: $secondary-color;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.cartItems__itemPrice {
+  margin-left: 20px;
+}
+
+.cartItems__total {
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 15px 15px;
+  margin-left: 20px;
+  min-width: 100px;
+}
+
+.cartItems__totalCart {
+  background-color: $secondary-color;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+}
+
+.cartItems__item {
+  align-items: center;
+  border-top: solid 1px #202020;
+  border-bottom: solid 1px #202020;
+  color: #fff;
+}
+
+.cartItems__itemDecrease,
+.cartItems__itemIncrease {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #707070;
+  &:hover {
+    transform: scale(1.07);
+    background-color: #707070 - #101010;
+    z-index: 99;
+  }
+}
+/* End cart items */
 
 /* header */
 .header {
@@ -217,18 +329,7 @@ body {
   z-index: 9;
   .product__button--add,
   .product__button--takeout {
-    background-color: #707070;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 2.25rem;
-    line-height: none;
-    padding: 0;
-    &:hover {
-      transform: scale(1.07);
-      background-color: #707070 - #101010;
-      z-index: 99;
-    }
+    @include buttonsAddTakeout;
   }
 
   .product__button--add {
@@ -239,11 +340,14 @@ body {
     border-right: solid 1.5px #fff;
   }
 
-  .product__button--add,
-  .product__button--takeout {
-    flex: 1;
-    height: 36px;
+  .product__button--takeout-disabled {
+    background-color: #303030;
+    &:hover {
+      background-color: #303030;
+      transform: none;
+    }
   }
+
   .product__price {
     background-color: $secondary-color;
     border: none;
@@ -277,6 +381,11 @@ body {
   &:hover {
     background-color: $secondary-color - #101010;
     transform: scale(1.02);
+  }
+  &:disabled {
+    background-color: #707070;
+    transform: none;
+    visibility: hidden;
   }
 }
 

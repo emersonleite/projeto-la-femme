@@ -3,7 +3,9 @@
     <span>
       <router-link :to="{path:'/cartitems'}">Meu carrinho</router-link>
     </span>
-    <span class="header__cartTotal">{{total| toCurrencyBRL}}</span>
+    <span class="header__cartTotal">
+      <router-link :to="{path:'/cartitems'}">{{totalCart| toCurrencyBRL}}</router-link>
+    </span>
   </div>
 </template>
  
@@ -15,8 +17,8 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["total"]),
-    ...mapState(["cart"])
+    ...mapState(["cart"]),
+    ...mapGetters(["totalCart"])
   },
   created() {}
 };

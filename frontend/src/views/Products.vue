@@ -1,9 +1,9 @@
  <template>
-  <main>
+  <main style="min-height: 100vh">
     <!-- NOTA*** Utilização do nome da categoria retornada como título da seção -->
     <TitleSection :title="returnedCategory" />
     <TheProductList :products="products" />
-    <!-- NOTA*** - ACIMA passando props para componente filho -->
+    <!-- NOTA*** - ACIMA passando props products para componente filho -->
   </main>
 </template>
  

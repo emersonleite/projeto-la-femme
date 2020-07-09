@@ -1,0 +1,45 @@
+/* header */
+.header {
+  background-color: $primary-color;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  .header__logo {
+    color: #ffffff;
+    cursor: pointer;
+    font-family: $logo-font;
+    font-size: 2.5rem;
+    flex: 1;
+    padding: 7px 0;
+  }
+  
+}
+.header__container {
+  @include container;
+}
+
+.header__cart {
+  color: #fff;
+  margin: auto 0;
+  font-size: 1rem;
+  span {
+    cursor: pointer;
+    font-family: $logo-font;
+    font-size: 2.2rem;
+    margin-right: 10px;
+    &:hover {
+      color: $secondary-color + #454545;
+    }
+  }
+  .header__cartTotal {
+    border-left: solid 3px #fff;
+    display: inline-block;
+    font-family: $primary-font;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 25px;
+    min-width: 145px;
+    text-align: right;
+  }
+}
+/* end header */

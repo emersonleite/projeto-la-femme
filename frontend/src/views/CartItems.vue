@@ -3,7 +3,7 @@
     <TitleSection :title="title" />
 
     <div class="cartItems__container">
-      <table>
+      <table class="cartItems__table">
         <thead>
           <tr>
             <th>Remover</th>
@@ -39,8 +39,12 @@
               <span class="cartItems__itemPrice">{{item.price | toCurrencyBRL}}</span>
             </td>
             <td>
-              <span class="cartItems__itemDecrease" @click="decreaseAmount(item, cart)">-</span>
-              <span class="cartItems__itemIncrease" @click="increaseAmount(item, cart)">+</span>
+              <button
+                :disabled="item.amount < 1"
+                class="cartItems__itemDecrease"
+                @click="decreaseAmount(item, cart, index)"
+              >-</button>
+              <button class="cartItems__itemIncrease" @click="increaseAmount(item, cart)">+</button>
             </td>
             <td>
               <span class="cartItems__total">{{total(item)|toCurrencyBRL}}</span>
@@ -69,14 +73,10 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["ADD_PRODUCT_TO_CART"]),
-    removeFromCart(cart, index) {
-      cart.splice(index, 1);
-      console.log(cart, index);
-      this.ADD_PRODUCT_TO_CART(cart);
-      window.localStorage["cart"] = _.to(cart);
-    }
+    ...mapMutations(["UPDATE_CART"])
+
     /* -----------------------MIXIN----------------------------- */
+    /* from mixinIncreaseDecrease - mixins.js */
     /* -----------------------END_MIXIN----------------------------- */
   },
   computed: {
@@ -87,7 +87,7 @@ export default {
   created() {
     if (window.localStorage.cart) {
       let cart = _.from("cart");
-      this.ADD_PRODUCT_TO_CART(cart);
+      this.UPDATE_CART(cart);
     }
   }
 };

@@ -1,74 +1,71 @@
  <template>
-  <section class="productDetail__section" style="min-height: 100vh">
-    <!-- <TitleSection :title="product.name" /> -->
+  <section class="productDetail__section">
     <div v-if="product" class="productDetail__container">
       <div class="productDetail__image">
         <img :src="`http://localhost:1337${product.photos[0].url}`" :alt="product.name" />
+        <button
+          class="product__button--cart"
+          @click="update_cart(product_to_cart, $event, product.sizes, sizeChoosed_)"
+        >adicionar ao carrinho</button>
+        <TheCart />
       </div>
       <div class="productDetail__buttons">
-        <h2 class="productDetail__name">{{product.name}}</h2>
-        <p class="productDetail__description">{{product.description}}</p>
-        <h3 class="productDetail__size">Tamanhos</h3>
-        <div class="product__button">
-          <button
-            :disabled="amount === 0"
-            @click="amount--"
-            :class="{'product__button--takeout-disabled': amount === 0}"
-            class="product__button--takeout"
-          >-</button>
-          <button @click="amount++" class="product__button--add">+</button>
-          <input class="product__amount" type="text" name="amount" v-model="amount" />
-          <span class="product__price">{{product.price | toCurrencyBRL}}</span>
-        </div>
-        <button
-          :disabled="amount === 0"
-          class="product__button--cart"
-          @click="add_product_to_cart(product_to_cart, $event)"
-        >
-          Adicionar ao
-          <br />carrinho
-        </button>
+        <ProductDetailPrices :product="product" />
+        <ProductDetailButtonSize :sizeChoosed__.sync="sizeChoosed_" :product="product" />
       </div>
     </div>
+    <div v-else class="productDetail__container">Carregando ...</div>
   </section>
 </template>
  
  <script>
-import { api } from "@/functions/requests.js";
+import ProductDetailButtonSize from "@/components/productDetailButtonSize.vue";
+import ProductDetailPrices from "@/components/productDetailPrices.vue";
+import TheCart from "@/components/TheCart.vue";
 import { mapMutations /* mapState */ } from "vuex";
+import { api } from "@/functions/requests.js";
 import { changeTextFromElementAfterATime as change } from "@/functions/changeTextFromElementAfterATime.js";
 import { _ } from "@/functions/local.js";
 import { mixinIncreaseDecrease } from "@/functions/mixins.js";
-/* Importando função de soma */
 export default {
   name: "ProductDetail",
   mixins: [mixinIncreaseDecrease],
   props: ["id"],
+  components: {
+    ProductDetailButtonSize,
+    ProductDetailPrices,
+    TheCart
+  },
   data() {
     return {
       product: {},
-      amount: 0,
-      cartTemp: []
+      amount: 1,
+      cartTemp: [],
+      sizeChoosed_: "",
+      currentInfoSize: "escolha o tamanho:"
     };
   },
 
   methods: {
-    ...mapMutations(["ADD_PRODUCT_TO_CART"]),
+    infoSelectSize() {
+      let infoSize = document.querySelector(".productDetail__size");
+      let infoSizeChoosed = `tamanho ${this.sizeChoosed_} escolhido`;
+      infoSize.innerText = infoSizeChoosed;
+    },
+
+    ...mapMutations(["UPDATE_CART"]),
     /* Função para adicionar produtos ao carrinho. Ela chama uma mutation que é mapeada acima para mudança
     do 'state' 'cart'. */
     getProduct() {
-      api
-        .get("http://localhost:1337" + this.$route.fullPath)
-        .then(response => (this.product = response));
+      api.get("http://localhost:1337" + this.$route.fullPath).then(response => {
+        this.product = response;
+      });
     },
-    add_product_to_cart(product, event) {
-      /* 'if' para verificar se a quantidade escolhida do produto é maior que zero e se não está no carrinho*/
-      if (
-        product.amount > 0 /* && !window.localStorage[`in_cart${product.id}`] */
-      ) {
-        this.ADD_PRODUCT_TO_CART(product);
-        /* VERIFICAR NECESSIDADE abaixo: */
-        /* window.localStorage[`in_cart${product.id}`] = true; */
+
+    update_cart(product, event, productSizes, sizeChoosed) {
+      if (productSizes.length > 0 && !sizeChoosed) {
+        window.alert("Escolha um tamanho");
+      } else {
         if (window.localStorage.cart) {
           this.cartTemp = _.from("cart");
           this.cartTemp.push(product);
@@ -78,51 +75,52 @@ export default {
           window.localStorage.cart = _.to(this.cartTemp);
         }
         const button = event.currentTarget;
-        console.log(button.innerText);
-        change(
-          button,
-          "Adicionando...",
-          `Adicionar
-         ao carrinho`,
-          1000
-        );
-        this.ADD_PRODUCT_TO_CART(this.cartTemp);
-        window.setTimeout(() => {
-          this.amount = 0;
-        }, 1000);
-      } /* else if (product.amount === 0) {
-        window.alert("Por favor, escolha a quantidade a ser comprada");
-      } */ /* else {
-        window.alert("O produto já está no carrinho.");
-      } */
+        change(button, "Adicionando...", `adicionar ao carrinho`, 1500);
+
+        this.UPDATE_CART(this.cartTemp);
+      }
     }
   },
   computed: {
-    /* Mapeando o dado do store 'cart' */
-    /*  ...mapState(["total"]), */
-
     /* Função retonando o tipo de dado que deve ser adicionado ao carrinho */
     product_to_cart() {
       return {
         id: this.product.id,
         name: this.product.name,
-        price: this.product.price,
+        price: this.product.cashPrice,
         amount: this.amount,
-        total: this.amount * this.product.price
+        total: this.amount * this.product.cashPrice,
+        size: this.sizeChoosed_
       };
     }
   },
   created() {
-    console.log("criado");
+    this.getProduct();
     if (window.localStorage.cart) {
       let cart = _.from("cart");
-      this.ADD_PRODUCT_TO_CART(cart);
+      this.UPDATE_CART(cart);
     }
-    this.getProduct();
   },
-  watch: {}
+  watch: {
+    sizeChoosed_() {
+      this.infoSelectSize();
+    }
+  }
 };
 </script>
- 
- <style>
+
+<style lang="scss" scoped>
+.header__cart {
+  background-color: #353535;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 20px;
+  text-align: center;
+  &:hover {
+    background-color: #656565;
+    transform: scale(1.02);
+    color: white;
+  }
+}
 </style>

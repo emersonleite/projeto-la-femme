@@ -3,7 +3,8 @@
     <!-- NOTA*** Utilização do nome da categoria retornada como título da seção -->
     <TitleSection :title="returnedCategory" />
     <TheProductList :products="products" />
-    <!-- NOTA*** - ACIMA passando props products para componente filho -->
+    <!-- NOTA*** - ACIMA passando props 'products' para componente filho, que, nesse 
+    caso é o 'TheProductList'-->
   </main>
 </template>
  

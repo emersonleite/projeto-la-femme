@@ -13,7 +13,9 @@
       "type": "string"
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "maxLength": 175,
+      "minLength": 50
     },
     "price": {
       "type": "decimal"
@@ -35,6 +37,24 @@
     "category": {
       "unique": true,
       "model": "category"
+    },
+    "sizes": {
+      "collection": "specifications-items"
+    },
+    "installment": {
+      "type": "integer"
+    },
+    "previousPrice": {
+      "type": "decimal"
+    },
+    "cashPrice": {
+      "type": "decimal"
+    },
+    "installmentPrice": {
+      "type": "decimal"
+    },
+    "active": {
+      "type": "boolean"
     }
   }
 }

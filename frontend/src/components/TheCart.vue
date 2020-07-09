@@ -1,12 +1,8 @@
  <template>
-  <div class="header__cart">
-    <span>
-      <router-link :to="{path:'/cartitems'}">Meu carrinho</router-link>
-    </span>
-    <span class="header__cartTotal">
-      <router-link :to="{path:'/cartitems'}">{{totalCart| toCurrencyBRL}}</router-link>
-    </span>
-  </div>
+  <router-link class="header__cart" tag="div" :to="{path:'/cartitems'}">
+    <span>Meu carrinho</span>
+    <span class="header__cartTotal">{{totalCart| toCurrencyBRL}}</span>
+  </router-link>
 </template>
  
  <script>

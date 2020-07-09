@@ -2,7 +2,6 @@
   <header class="header">
     <div class="header__container">
       <router-link tag="h1" to="/" class="header__logo">La Femme</router-link>
-      <p style="color: #fff;cursor: pointer;" @click="limpar">Limpar</p>
       <TheCart />
     </div>
   </header>
@@ -13,12 +12,6 @@ export default {
   name: "TheHeader",
   components: {
     TheCart
-  },
-  methods: {
-    limpar() {
-      window.localStorage.clear();
-      window.localStorage.removeItem("cart");
-    }
   }
 };
 </script>

@@ -1,0 +1,19 @@
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+body {
+  background-color: $primary-color;
+}
+/* end reset */

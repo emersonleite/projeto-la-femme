@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Products from "../views/Products.vue";
 import CartItems from "../views/CartItems.vue";
 import ProductDetail from "../views/ProductDetail.vue";
+import SignupPage from "../views/SignupPage.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/products/:id",
     name: "product",
     component: ProductDetail,
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: SignupPage,
   },
   {
     path: "/about",

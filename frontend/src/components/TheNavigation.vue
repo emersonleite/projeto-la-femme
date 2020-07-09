@@ -5,7 +5,6 @@
       com o nome 'products', devidamente registrado no arquivo index.js, presente na 
       pasta 'router'
       :to=" { name: 'products', params: {category: item.category} }"
-      
       -->
       <router-link
         :to=" { name: 'products', query: {'category.category':item.category} }"
@@ -16,10 +15,14 @@
       >
         <a href>{{item.category}}</a>
       </router-link>
-      <div class="navigation__buttons">
-        <button class="navigation__button--signup">Sign up</button>
+      <li class="navigation__buttons">
+        <router-link
+          tag="button"
+          :to="{ path: '/signup' }"
+          class="navigation__button--signup"
+        >Cadastrar</router-link>
         <button class="navigation__button--login">Log in</button>
-      </div>
+      </li>
     </ul>
   </nav>
 </template>
@@ -31,8 +34,9 @@ export default {
       navigation_items: []
     };
   },
+  components: {},
   methods: {
-    getItemsNavigation() {
+    getNavigationItems() {
       fetch("http://localhost:1337/categories")
         .then(response => response.json())
         .then(response => {
@@ -42,7 +46,7 @@ export default {
     }
   },
   created() {
-    this.getItemsNavigation();
+    this.getNavigationItems();
   }
 };
 </script>

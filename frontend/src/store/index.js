@@ -9,7 +9,7 @@ export default new Vuex.Store({
     cart: [],
   },
   mutations: {
-    ADD_PRODUCT_TO_CART(state, payload) {
+    UPDATE_CART(state, payload) {
       state.cart = payload;
     },
   },

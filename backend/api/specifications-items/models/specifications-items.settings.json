@@ -1,0 +1,16 @@
+{
+  "kind": "collectionType",
+  "collectionName": "specifications_items",
+  "info": {
+    "name": "sizes"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Number": {
+      "type": "string"
+    }
+  }
+}

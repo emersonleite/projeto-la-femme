@@ -1,6 +1,6 @@
  <template>
   <ul class="product__container">
-    <TheProductOne :product="product" v-for="product in products" :key="product.id" />
+    <TheProductOne v-for="product in products" :product="product" :key="product.id" />
   </ul>
 </template>
  

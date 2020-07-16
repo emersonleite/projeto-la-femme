@@ -1,6 +1,32 @@
-# projeto-la-femme
+# Design of a store prototype for women's clothing
+# La Femme
+
+## Applied technologies
+
+1. Backend:
+- Framework (node) strapi using Koa js;
+
+2. Frontend: 
+- Vue;
+- Vuex;
+- Router Vue;
+- Sass;
+
+## Current features
+
+- Product list;
+- Product details (price, description, sizes);
+- Cart;
+
+## Future features
+
+- User registration;
+- Order fulfillment;
+- List of promotions;
+
 
 ## Project setup
+
 ```
 yarn install
 ```
@@ -22,3 +48,11 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Screens
+
+![Cart](https://imgur.com/CPEaweV)
+![Products](https://imgur.com/u0Kt1Yh)
+![Product detail](https://imgur.com/mbYM9kx)
+
+

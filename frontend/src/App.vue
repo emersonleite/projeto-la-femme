@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss">
 /* Imports */
+@import "./sass/boxContainer.scss";
 @import "../src/fonts/Holland.ttf";
 @import "../src/fonts/MavenPro-VariableFont_wght.ttf";
 @import "../src/fonts/Holland.ttf";
@@ -35,7 +36,7 @@ export default {
 @import "./sass/header.scss";
 @import "./sass/navigation.scss";
 @import "./sass/product.scss";
-@import "./sass/productDetail.scss";
+/* @import "./sass/productDetail.scss"; */
 @import "./sass/footer.scss";
 /* End Imports */
 </style>

@@ -14,7 +14,6 @@
       </span>
     </div>
   </div>
-  <!-- <button value="P" @click="choose($event)">BOTÃO de TESTE</button> -->
 </template>
  
  <script>
@@ -35,5 +34,6 @@ export default {
 };
 </script>
  
- <style>
+ <style lang="scss" scoped>
+@import "../sass/productDetail.scss";
 </style>

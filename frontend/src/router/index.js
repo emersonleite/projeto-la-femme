@@ -1,12 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Products from "../views/Products.vue";
-import CartItems from "../views/CartItems.vue";
-import ProductDetail from "../views/ProductDetail.vue";
-import SignupPage from "../views/SignupPage.vue";
+import Home from "../pages/Home.vue";
+import Products from "../pages/Products.vue";
+import CartItems from "../pages/CartItems.vue";
+import ProductDetail from "../pages/ProductDetail.vue";
+import SignupPage from "../pages/SignupPage.vue";
+import GetData from "../components/get_data/GetData.vue";
+import pagePrototype from "../pages/pagePrototype.vue";
 
 Vue.use(VueRouter);
+
+/* const arrayRoutes = ["teste", "teste2"]; */
 
 const routes = [
   {
@@ -35,13 +39,23 @@ const routes = [
     component: SignupPage,
   },
   {
+    path: "/getdata",
+    name: "getdata",
+    component: GetData,
+  },
+  {
+    path: "/page",
+    name: "page",
+    component: pagePrototype,
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../pages/About.vue"),
   },
 ];
 

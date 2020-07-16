@@ -28,3 +28,6 @@ export default {
   props: ["product"]
 };
 </script>
+<style lang="scss" scoped>
+@import "../sass/productDetail.scss";
+</style>

@@ -2,15 +2,15 @@
 
 ## 1. Screens
 
-### Cart:
+### 1.1 Cart:
 
 ![Cart](https://github.com/emersonleite/projeto-la-femme/blob/master/frontend/src/assets/img/tela.png)
 
-### Products:
+### 1.2 Products:
 
 ![Products](https://github.com/emersonleite/projeto-la-femme/blob/master/frontend/src/assets/img/tela1.png)
 
-### Products Details
+### 1.3 Products Details
 
 ![Product detail](https://github.com/emersonleite/projeto-la-femme/blob/master/frontend/src/assets/img/tela3.png)
 

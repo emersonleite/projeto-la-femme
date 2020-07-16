@@ -51,8 +51,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # Screens
 
-![Cart](https://github.com/emersonleite/projeto-la-femme/blob/master/frontend/src/assets/img/banner.jpg)
-![Products](https://imgur.com/u0Kt1Yh)
-![Product detail](https://imgur.com/mbYM9kx)
+![Cart](https://github.com/emersonleite/projeto-la-femme/blob/master/frontend/src/assets/img/tela.png)
+![Products](https://github.com/emersonleite/projeto-la-femme/blob/master/frontend/src/assets/img/tela1.png)
+![Product detail](https://github.com/emersonleite/projeto-la-femme/blob/master/frontend/src/assets/img/tela3.png)
 
 

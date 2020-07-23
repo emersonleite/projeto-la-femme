@@ -57,16 +57,21 @@
 </template>
  
  <script>
-import { mapMutations, mapState, mapGetters } from "vuex";
+/* Custom components */
 import TitleSection from "@/components/TitleSection.vue";
-import { _ } from "@/functions/local.js";
-import { mixinIncreaseDecrease } from "@/functions/mixins.js";
+
+/* Mixins */
+import { mixinIncreaseDecrease, createdMixins } from "@/functions/mixins.js";
+
+/* Mutation, State, Getters */
+import { mapMutations, mapState, mapGetters } from "vuex";
+
 export default {
   name: "CartItems",
   components: {
     TitleSection
   },
-  mixins: [mixinIncreaseDecrease],
+  mixins: [mixinIncreaseDecrease, createdMixins],
   data() {
     return {
       title: "Meu carrinho"
@@ -74,21 +79,10 @@ export default {
   },
   methods: {
     ...mapMutations(["UPDATE_CART"])
-
-    /* -----------------------MIXIN----------------------------- */
-    /* from mixinIncreaseDecrease - mixins.js */
-    /* -----------------------END_MIXIN----------------------------- */
   },
   computed: {
     ...mapState(["cart"]),
     ...mapGetters(["totalCart"])
-  },
-  watch: {},
-  created() {
-    if (window.localStorage.cart) {
-      let cart = _.from("cart");
-      this.UPDATE_CART(cart);
-    }
   }
 };
 </script>

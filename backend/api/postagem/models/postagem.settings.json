@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "postagems",
+  "info": {
+    "name": "Postagem"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    }
+  }
+}

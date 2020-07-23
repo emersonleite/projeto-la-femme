@@ -19,19 +19,19 @@ export default {
   components: {
     ProductList,
     TitleSection,
-    GetData
+    GetData,
   },
   data() {
     return {
       title: "La Femme",
-      data_: {}
+      data_: {},
     };
   },
   created() {
     /* NOTA*** Mudando título da página na criação do elemento */
     document.title = this.title;
     /* this.getProducts(); */
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

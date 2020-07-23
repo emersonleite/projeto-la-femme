@@ -1,10 +1,7 @@
 export function createObjectWithLabelsArray(labelArray) {
-  let emptyObject = {};
+  let objectCreated = {};
   for (var x = 0; x <= labelArray.length - 1; x++) {
-    emptyObject[labelArray[x]] = "";
+    objectCreated[labelArray[x]] = "";
   }
-  return emptyObject;
+  return objectCreated;
 }
-
-/* const a = createObject(["a", "b", "c", "d", "e", "f"]);
-console.log(a); */

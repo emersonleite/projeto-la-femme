@@ -2,6 +2,9 @@ export const api = {
   async get(endpoint) {
     return fetch(endpoint).then((response) => response.json());
   },
+  async getNoJson(endpoint) {
+    return fetch(endpoint);
+  },
   async post(endpoint, body) {
     return fetch(endpoint, body, {
       method: "post",

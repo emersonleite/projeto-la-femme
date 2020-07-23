@@ -5,7 +5,7 @@
   height: 35px;
   width: 100%;
   margin-bottom: 20px;
-  padding: 2.5;
+  padding: 2.5px;
 }
 
 .labelInput {
@@ -13,4 +13,9 @@
   display: block;
   font-size: 1.25rem;
   margin-bottom: 7px;
+}
+
+.formSignupPage {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -1,4 +1,6 @@
 import { _ } from "@/functions/local.js";
+import { mapMutations } from "vuex";
+
 export const mixinIncreaseDecrease = {
   methods: {
     /* Função para retirada de item no carrinho */
@@ -29,5 +31,17 @@ export const mixinIncreaseDecrease = {
     total(itemOfTheCart) {
       return (itemOfTheCart.total = itemOfTheCart.price * itemOfTheCart.amount);
     },
+  },
+};
+
+export const createdMixins = {
+  methods: {
+    ...mapMutations(["UPDATE_CART"]),
+  },
+  created() {
+    if (window.localStorage.cart) {
+      let cart = _.from("cart");
+      this.UPDATE_CART(cart);
+    }
   },
 };

@@ -1,4 +1,5 @@
  <template>
+  <!-- Getting data from api - get-data component -->
   <get-data :url="`http://localhost:1337${this.$route.fullPath}`" :data__.sync="data_">
     <box-container class="box-container">
       <box-row class="box-row">
@@ -24,24 +25,27 @@
 </template>
  
  <script>
-/*  */
+/* Structure components */
 import BoxContainer from "@/components/structure/BoxContainer.vue";
 import BoxRow from "@/components/structure/BoxRow.vue";
 import BoxColumn from "@/components/structure/BoxColumn.vue";
 import GetData from "@/components/get_data/GetData.vue";
-/*  */
+
+/* Custom components */
 import ProductDetailButtonSize from "@/components/ProductDetailButtonSize.vue";
 import ProductDetailPrices from "@/components/ProductDetailPrices.vue";
-
 import TheCart from "@/components/TheCart.vue";
-import { mapMutations /* mapState */ } from "vuex";
 
+/* Functions */
 import { changeTextFromElementAfterATime as change } from "@/functions/changeTextFromElementAfterATime.js";
 import { _ } from "@/functions/local.js";
-import { mixinIncreaseDecrease } from "@/functions/mixins.js";
+
+/* Mixins */
+import { mixinIncreaseDecrease, createdMixins } from "@/functions/mixins.js";
+
 export default {
   name: "ProductDetail",
-  mixins: [mixinIncreaseDecrease],
+  mixins: [mixinIncreaseDecrease, createdMixins],
   props: ["id"],
   components: {
     ProductDetailButtonSize,
@@ -69,16 +73,6 @@ export default {
       infoSize.innerText = infoSizeChoosed;
     },
 
-    ...mapMutations(["UPDATE_CART"]),
-    /* Função para adicionar produtos ao carrinho. Ela chama uma mutation que é mapeada acima para mudança
-    do 'state' 'cart'. */
-
-    /* getProduct() {
-      api.get("http://localhost:1337" + this.$route.fullPath).then(response => {
-        this.product = response;
-      });
-    }, */
-
     update_cart(product, event, productSizes, sizeChoosed) {
       if (productSizes.length > 0 && !sizeChoosed) {
         window.alert("Escolha um tamanho");
@@ -98,6 +92,7 @@ export default {
       }
     }
   },
+
   computed: {
     /* Função retonando o tipo de dado que deve ser adicionado ao carrinho */
     product_to_cart() {
@@ -112,15 +107,7 @@ export default {
     }
   },
   created() {
-    window.setTimeout(() => {
-      console.log(this.data_.photos);
-    }, 150);
-
-    /* this.getProduct(); */
-    /* if (window.localStorage.cart) {
-      let cart = _.from("cart");
-      this.UPDATE_CART(cart);
-    } */
+    /* mixin */
   },
   watch: {
     sizeChoosed_() {

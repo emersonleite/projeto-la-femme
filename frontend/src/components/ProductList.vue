@@ -2,6 +2,7 @@
   <box-container _class="box-container">
     <box-row _class="box-row">
       <box-column class="box-item-4" v-for="product in products" :key="product.id">
+        {{product.id}}
         <router-link :to="{name: 'product', params:{id:product.id}}">
           <img
             class="product__image"
@@ -28,19 +29,22 @@
 </template>
  
  <script>
+/* Structure components */
 import BoxContainer from "@/components/structure/BoxContainer.vue";
 import BoxRow from "@/components/structure/BoxRow.vue";
 import BoxColumn from "@/components/structure/BoxColumn.vue";
+
+/* Mixins */
+import { createdMixins } from "@/functions/mixins.js";
+
 export default {
-  data() {
-    return {};
-  },
   components: {
     BoxContainer,
     BoxRow,
-    BoxColumn
+    BoxColumn,
   },
-  props: ["products"]
+  props: ["products"],
+  mixins: [createdMixins],
 };
 </script>
  

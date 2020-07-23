@@ -3,138 +3,105 @@
     <TitleSection :title="title" />
     <box-container _class="box-container">
       <box-row _class="box-row">
-        <box-column class="box-item-3">
-          <form-container _class="formSignupPage">
-            <LabelInput _class="labelInput" _label="nome" />
-            <InputField _class="inputField" _type="text" _label="nome" :_model.sync="nome" />
-            <LabelInput _class="labelInput" _label="sobrenome" />
-            <InputField
+        <form-container _class="formSignupPage">
+          <div v-for="field in fields" :key="field.label" class="box-item-4">
+            <LabelInput _class="labelInput" :_label="field.label" />
+            <InputFieldData
+              v-if="field.get_data_from_api"
+              :_type="field.type"
+              :_label="field.label"
               _class="inputField"
-              _type="text"
-              _label="sobrenome"
-              :_model.sync="sobrenome"
+              :_url="field.url"
+              :_path="field.path"
+              :_after_path="field.after_path"
+              :_model.sync="model[field.label]"
+              :_dataApi.sync="dataApi_"
             />
-            <LabelInput _class="labelInput" _label="telefone" />
             <InputField
+              v-else
               _class="inputField"
-              _type="number"
-              _label="telefone"
-              :_model.sync="telefone"
+              :_type="field.type"
+              :_label="field.label"
+              :_value="dataApi_[field.value_from_api]"
+              :_model.sync="model[field.label]"
             />
-            <LabelInput _class="labelInput" _label="CPF" />
-            <InputField _class="inputField" _type="number" _label="CPF" :_model.sync="CPF" />
-            <LabelInput _class="labelInput" _label="email" />
-            <InputField _class="inputField" _type="email" _label="email" :_model.sync="email" />
-            <LabelInput _class="labelInput" _label="senha" />
-            <InputField _class="inputField" _type="password" _label="senha" :_model.sync="senha" />
-          </form-container>
-        </box-column>
-        <box-column class="box-item-3">
-          <form-container _class="formSignupPage">
-            <LabelInput _class="labelInput" _label="CEP" />
-            <InputField
-              _class="inputField"
-              _type="number"
-              _label="CEP"
-              :_model.sync="cep"
-              @change="getEndereco(cep)"
-            />
-            <LabelInput _class="labelInput" _label="logradouro" />
-            <InputField
-              _class="inputField"
-              _type="text"
-              _label="logradouro"
-              :_model.sync="logradouro"
-              v-model="logradouro"
-            />
-            <LabelInput _class="labelInput" _label="cidade" />
-            <InputField
-              _class="inputField"
-              _type="text"
-              _label="cidade"
-              :_model.sync="cidade"
-              v-model="cidade"
-            />
-            <LabelInput _class="labelInput" _label="bairro" />
-            <InputField
-              _class="inputField"
-              _type="text"
-              _label="bairro"
-              :_model.sync="bairro"
-              v-model="bairro"
-            />
-            <LabelInput _class="labelInput" _label="estado" />
-            <InputField
-              _class="inputField"
-              _type="text"
-              _label="estado"
-              :_model.sync="estado"
-              v-model="estado"
-            />
-            <LabelInput _class="labelInput" _label="repetir senha" />
-            <InputField
-              _class="inputField"
-              _type="password"
-              _label="repetir senha"
-              :_model.sync="repetir_senha"
-            />
-          </form-container>
-        </box-column>
-        <box-column
+          </div>
+        </form-container>
+
+        <!--  Teste -->
+        <div style="color: white;">{{model.localidade}}</div>
+        <div style="color: white;">{{dataApi_.localidade}}</div>
+
+        <!--  -->
+
+        <!-- <box-column
           style="background-color:#fff; height    : 100%;"
           class="box-item-6 promotional"
-        >Aproveite</box-column>
+        >Aproveite</box-column>-->
       </box-row>
     </box-container>
     <box-container _class="box-container">
       <box-row _class="box-row">
         <button class="box-item-6 signup__button">Enviar</button>
       </box-row>
+      <post-button
+        _url="http://localhost:1337/postagems"
+        _class="box-item-6 signup__button"
+        _value="ok"
+      ></post-button>
     </box-container>
   </main>
 </template>
  
  <script>
-/*  */
-import TitleSection from "@/components/TitleSection.vue";
+/* Structure components */
+import BoxContainer from "@/components/structure/BoxContainer.vue";
+import BoxRow from "@/components/structure/BoxRow.vue";
+/* import BoxColumn from "@/components/structure/BoxColumn.vue"; */
+
+/* Buttons */
+import PostButton from "@/components/buttons/PostButton.vue";
+
+/* Input fields components  */
 import FormContainer from "@/components/input_fields/FormContainer.vue";
 import InputField from "@/components/input_fields/InputField.vue";
 import LabelInput from "@/components/input_fields/LabelImput.vue";
-import BoxContainer from "@/components/structure/BoxContainer.vue";
-import BoxRow from "@/components/structure/BoxRow.vue";
-import BoxColumn from "@/components/structure/BoxColumn.vue";
-import { api } from "@/functions/requests.js";
-/*  */
+import InputFieldData from "@/components/input_fields/InputFieldData.vue";
+
+/* Custom components */
+import TitleSection from "@/components/TitleSection.vue";
+
+/* Requests */
+/* import { api } from "@/functions/requests.js"; */
+
+/* Form data */
+import model from "@/data/form1.js";
+import { fields } from "@/data/form1.js";
+
 export default {
   name: "SignupPage",
   components: {
-    TitleSection,
-    InputField,
-    LabelInput,
-    FormContainer,
     BoxContainer,
     BoxRow,
-    BoxColumn
+    /* BoxColumn, */
+    InputField,
+    LabelInput,
+    InputFieldData,
+    FormContainer,
+    TitleSection,
+    PostButton,
   },
+
   data() {
     return {
       title: "Cadastro",
-      nome: "",
-      sobrenome: "",
-      telefone: "",
-      CPF: "",
-      email: "",
-      senha: "",
-      repetir_senha: "",
-      cep: "",
-      logradouro: "",
-      cidade: "",
-      bairro: "",
-      estado: ""
+      dataApi_: {},
+      model,
+      fields,
     };
   },
   methods: {
-    getEndereco(zipCode) {
+    /* getEndereco(zipCode) {
       const cep = this.cep.replace(/\D/g, "");
       if (cep.length === 8) {
         api.get(`https://viacep.com.br/ws/${zipCode}/json`).then(response => {
@@ -145,15 +112,16 @@ export default {
           this.bairro = response["bairro"];
         });
       }
-    }
+    } */
   },
+
   watch: {
-    cep() {
+    form() {
       if (this.cep.length === 8) {
         this.getEndereco(this.cep);
       }
-    }
-  }
+    },
+  },
 };
 </script>
  

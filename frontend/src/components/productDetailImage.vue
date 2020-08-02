@@ -7,10 +7,10 @@
  <script>
 export default {
   name: "ProductDetailImage",
-  props: ["product"]
+  props: ["product"],
 };
 </script>
  
  <style lang="scss" scoped>
-@import "../sass/productDetail.scss";
+@import "../sass/product-detail.scss";
 </style>

@@ -6,7 +6,7 @@
     :id="_label"
     :class="_class"
     @change="modelHandler($event)"
-    :required="false"
+    :required="true"
   />
 </template>
  
@@ -17,8 +17,8 @@ export default {
   methods: {
     modelHandler() {
       this.$emit("update:_model", event.target.value);
-    }
-  }
+    },
+  },
 };
 </script>
  

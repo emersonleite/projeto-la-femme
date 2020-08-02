@@ -1,5 +1,5 @@
 <template>
-  <get-data url="http://localhost:1337/products" :data__.sync="data_">
+  <get-data _url="http://localhost:1337/products" _option="axios" :data__.sync="data_">
     <InputLabelField
       _type="number"
       _placeholder="(xx)xxxx-xxxx"
@@ -23,7 +23,7 @@ export default {
   components: {
     GetData,
 
-    InputLabelField
+    InputLabelField,
   },
   created() {
     console.log(this.v_models);
@@ -35,27 +35,27 @@ export default {
       labels: [
         {
           label: "label1",
-          type: "text"
+          type: "text",
         },
         {
           label: "label2",
-          type: "number"
+          type: "number",
         },
         {
           label: "label3",
-          type: "text"
+          type: "text",
         },
         {
           label: "label4",
-          type: "text"
-        }
+          type: "text",
+        },
       ],
       style: {
-        color: "#fff"
+        color: "#fff",
       },
-      data_: {}
+      data_: {},
     };
-  }
+  },
 };
 </script>
 

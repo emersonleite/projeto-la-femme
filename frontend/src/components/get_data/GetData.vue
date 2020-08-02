@@ -6,10 +6,11 @@
  
  <script>
 import { api } from "@/services.js";
+/* import axios from "axios"; */
 
 export default {
   name: "GetData",
-  props: ["url", "_class"],
+  props: ["_url", "_class"],
   data() {
     return {
       data_: {},
@@ -17,17 +18,22 @@ export default {
   },
   methods: {
     getData() {
-      api.get(this.url).then((response) => {
+      //AXIOS
+      /* axios.get(this._url).then((response) => {
+        this.data_ = response.data;
+        this.$emit("update:data__", this.data_);
+      }); */
+
+      //FETCH
+      api.get(this._url).then((response) => {
         this.data_ = response;
-        this.emitData();
+        console.log(response);
+        this.$emit("update:data__", this.data_);
       });
-    },
-    emitData() {
-      this.$emit("update:data__", this.data_);
     },
   },
   watch: {
-    url() {
+    _url() {
       this.getData();
     },
   },

@@ -1,5 +1,10 @@
  <template>
-  <get-data class="main" url="http://localhost:1337/categories" :data__.sync="data_">
+  <get-data
+    class="main"
+    _url="http://localhost:1337/categories"
+    _option="axios"
+    :data__.sync="data_"
+  >
     <nav class="navigation">
       <ul class="navigation__container">
         <router-link
@@ -17,7 +22,7 @@
             :to="{ path: '/signup' }"
             class="navigation__button--signup"
           >Cadastrar</router-link>
-          <button class="navigation__button--login">Log in</button>
+          <button tag="button" @click="update_login" class="navigation__button--login">Log in</button>
         </li>
       </ul>
     </nav>
@@ -28,16 +33,25 @@
 /* Structure components */
 import GetData from "@/components/get_data/GetData.vue";
 
+/* Mutations */
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
       data_: {},
-      navigation_items: []
+      navigation_items: [],
     };
   },
   components: {
-    GetData
-  }
+    GetData,
+  },
+  methods: {
+    ...mapMutations(["UPDATE_LOGIN"]),
+    update_login() {
+      this.UPDATE_LOGIN();
+    },
+  },
 };
 </script>
  

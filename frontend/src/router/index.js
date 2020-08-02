@@ -1,12 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+/* Import pages */
 import Home from "../pages/Home.vue";
 import Products from "../pages/Products.vue";
 import CartItems from "../pages/CartItems.vue";
 import ProductDetail from "../pages/ProductDetail.vue";
 import SignupPage from "../pages/SignupPage.vue";
-import GetData from "../components/get_data/GetData.vue";
-import pagePrototype from "../pages/pagePrototype.vue";
+import CadastroProdutos from "../pages/CadastroProdutos.vue";
+import PageLogIn from "../pages/PageLogIn.vue";
+
+/* import GetData from "../components/get_data/GetData.vue"; */
+/* import pagePrototype from "../pages/pagePrototype.vue"; */
 
 Vue.use(VueRouter);
 
@@ -38,15 +42,21 @@ const routes = [
     name: "signup",
     component: SignupPage,
   },
-  {
+  { path: "/login", name: "login", component: PageLogIn },
+  /* {
     path: "/getdata",
     name: "getdata",
     component: GetData,
-  },
-  {
+  }, */
+  /* {
     path: "/page",
     name: "page",
     component: pagePrototype,
+  }, */
+  {
+    path: "/cadastro",
+    name: "cadastro",
+    component: CadastroProdutos,
   },
   {
     path: "/about",

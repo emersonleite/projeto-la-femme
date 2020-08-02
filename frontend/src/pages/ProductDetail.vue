@@ -1,6 +1,6 @@
  <template>
   <!-- Getting data from api - get-data component -->
-  <get-data :url="`http://localhost:1337${this.$route.fullPath}`" :data__.sync="data_">
+  <get-data :_url="`http://localhost:1337${this.$route.fullPath}`" :data__.sync="data_">
     <box-container class="box-container">
       <box-row class="box-row">
         <box-column class="productDetail__image box-item-gold">
@@ -32,8 +32,8 @@ import BoxColumn from "@/components/structure/BoxColumn.vue";
 import GetData from "@/components/get_data/GetData.vue";
 
 /* Custom components */
-import ProductDetailButtonSize from "@/components/ProductDetailButtonSize.vue";
-import ProductDetailPrices from "@/components/ProductDetailPrices.vue";
+/* import ProductDetailButtonSize from "@/components/ProductDetailButtonSize.vue"; */
+/* import ProductDetailPrices from "@/components/ProductDetailPrices.vue"; */
 import TheCart from "@/components/TheCart.vue";
 
 /* Functions */
@@ -48,13 +48,16 @@ export default {
   mixins: [mixinIncreaseDecrease, createdMixins],
   props: ["id"],
   components: {
-    ProductDetailButtonSize,
-    ProductDetailPrices,
+    ProductDetailButtonSize: () =>
+      import("@/components/ProductDetailButtonSize.vue"),
+    /* ProductDetailButtonSize, */
+    ProductDetailPrices: () => import("@/components/ProductDetailPrices.vue"),
+    /* ProductDetailPrices, */
     TheCart,
     BoxContainer,
     BoxRow,
     BoxColumn,
-    GetData
+    GetData,
   },
   data() {
     return {
@@ -62,7 +65,7 @@ export default {
       amount: 1,
       cartTemp: [],
       sizeChoosed_: "",
-      currentInfoSize: "escolha o tamanho:"
+      currentInfoSize: "escolha o tamanho:",
     };
   },
 
@@ -90,7 +93,7 @@ export default {
 
         this.UPDATE_CART(this.cartTemp);
       }
-    }
+    },
   },
 
   computed: {
@@ -102,9 +105,9 @@ export default {
         price: this.data_.cashPrice,
         amount: this.amount,
         total: this.amount * this.data_.cashPrice,
-        size: this.sizeChoosed_
+        size: this.sizeChoosed_,
       };
-    }
+    },
   },
   created() {
     /* mixin */
@@ -112,16 +115,16 @@ export default {
   watch: {
     sizeChoosed_() {
       this.infoSelectSize();
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../sass/variables.scss";
 @import "../sass/mixins.scss";
-@import "../sass/boxContainer.scss";
-@import "../sass/productDetail.scss";
+@import "../sass/box-container.scss";
+@import "../sass/product-detail.scss";
 @include boxContainer(960px, 30px);
 
 .box-container {

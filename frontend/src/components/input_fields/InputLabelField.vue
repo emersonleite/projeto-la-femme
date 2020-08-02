@@ -8,7 +8,7 @@
       :placeholder="_placeholder"
       @change="modelHandler($event)"
     />
-    <label :class="_labelClass" :for="_label">{{formatedField}}</label>
+    <label :class="_labelClass" :for="_label">{{_alternativeLabel}}</label>
   </div>
 </template>
  
@@ -21,13 +21,13 @@ export default {
     "_class",
     "_labelClass",
     "_inputClass",
-    "_altLabel",
-    "_placeholder"
+    "_alternativeLabel",
+    "_placeholder",
   ],
   methods: {
     modelHandler() {
       this.$emit("update:_model", event.target.value);
-    }
+    },
   },
   computed: {
     formatedField() {
@@ -35,8 +35,8 @@ export default {
         return this._label.charAt(0).toUpperCase() + this._label.slice(1);
       }
       return this._altLabel.charAt(0).toUpperCase() + this._altLabel.slice(1);
-    }
-  }
+    },
+  },
 };
 </script>
  

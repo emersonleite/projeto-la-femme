@@ -22,18 +22,18 @@ export default {
   props: ["product"],
   data() {
     return {
-      sizeChoosed: ""
+      sizeChoosed: "",
     };
   },
   methods: {
     sizeChoosedHandler(event) {
       /* console.log(event.target.value); */
       this.$emit("update:sizeChoosed__", event.target.value);
-    }
-  }
+    },
+  },
 };
 </script>
  
  <style lang="scss" scoped>
-@import "../sass/productDetail.scss";
+@import "../sass/product-detail.scss";
 </style>

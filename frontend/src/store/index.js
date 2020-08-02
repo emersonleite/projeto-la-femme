@@ -7,10 +7,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     cart: [],
+    showLoginScreen: false,
   },
   mutations: {
     UPDATE_CART(state, payload) {
       state.cart = payload;
+    },
+    UPDATE_LOGIN(state) {
+      state.showLoginScreen = !state.showLoginScreen;
     },
   },
   getters: {

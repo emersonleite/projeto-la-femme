@@ -5,6 +5,23 @@ import { createObjectWithLabelsArray as createModelFrom } from "@/functions/crea
 export const fields = {
   f1: {
     type: "text",
+    label: "identifier",
+    alternativeLabel: "Nome de usuário",
+  } /** accented words  */,
+  /* f2: {
+    type: "email",
+    label: "email",
+    alternativeLabel: "E-mail" */ /*   }, */
+  f3: {
+    type: "password",
+    label: "password",
+    alternativeLabel: "Senha" /** accented words  */,
+  },
+};
+
+/* export const fields = {
+  f1: {
+    type: "text",
     label: "nome_princ",
     get_data_from_api: true,
     url: "https://viacep.com.br",
@@ -37,7 +54,7 @@ export const fields = {
     type: "number",
     label: "Dado numerico2",
   },
-};
+}; */
 
 /* Create labels from fields */
 const labels = createLabelsFrom(fields, "label");

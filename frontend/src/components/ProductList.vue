@@ -2,13 +2,14 @@
   <box-container _class="box-container">
     <box-row _class="box-row">
       <box-column class="box-item-4" v-for="product in products" :key="product.id">
-        {{product.id}}
+        <!-- {{product.id}} -->
         <router-link :to="{name: 'product', params:{id:product.id}}">
           <img
-            class="product__image"
             :src="`http://localhost:1337${product.photos[0].url}`"
+            class="product__image"
             :alt="product.name"
           />
+
           <div style="width: 100% ">
             <p class="product__name">{{product.name}}</p>
           </div>
@@ -50,7 +51,7 @@ export default {
  
   <style lang="scss" scoped>
 @import "../sass/variables.scss";
-@import "../sass/boxContainer.scss";
+@import "../sass/box-container.scss";
 @include boxContainer(960px, 50px);
 
 * {

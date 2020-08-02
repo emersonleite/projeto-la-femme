@@ -1,6 +1,10 @@
  <template>
   <!-- Getting data from api - get-data component -->
-  <get-data class="main" :url="`http://localhost:1337${this.$route.fullPath}`" :data__.sync="data_">
+  <get-data
+    class="main"
+    :_url="`http://localhost:1337${this.$route.fullPath}`"
+    :data__.sync="data_"
+  >
     <TitleSection :title="returnedCategory" />
     <ProductList :products="data_" />
   </get-data>
@@ -26,8 +30,6 @@ export default {
     return {
       title: "La Femme",
       data_: {},
-      url: "",
-      full: this.$route.fullPath,
     };
   },
   watch: {

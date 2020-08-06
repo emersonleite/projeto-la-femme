@@ -1,20 +1,23 @@
  <template>
   <keep-alive>
-    <div v-show="_hook" :style="style" @click="closeModalWrapper($event)">
-      <button>close</button>
+    <div v-show="_hook" :class="_class" :style="_style" @click="closeModalWrapper($event)">
+      <button type="submit">teste</button>
       <slot></slot>
     </div>
   </keep-alive>
 </template>
  
  <script>
-import { mapMutations } from "vuex";
+/**
+ * The only true button.
+ * @displayName Modal Wrapper
+ */
 
 export default {
   name: "ModalWrapper",
-  data() {
-    return {
-      style: {
+  computed: {
+    _style() {
+      return {
         position: "fixed",
         left: 0,
         top: 0,
@@ -25,25 +28,45 @@ export default {
         zIndex: 10,
         overflow: "auto",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
-      },
-    };
-  },
-  props: ["_hook", "_closeFunction"],
-  computed: {},
-  methods: {
-    ...mapMutations(["UPDATE_LOGIN"]),
-    close() {
-      this.UPDATE_LOGIN();
+      };
     },
+  },
+  props: {
+    /**
+     * Variable wich allow that the modal appears
+     */
+    _hook: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    /**
+     * Class for styling.
+     */
+    _class: {
+      type: String,
+      required: false,
+    },
+    /**
+     * Function that changes the _hook's state. Is applicable if the _hook is a store variable.
+     */
+    _closingFunction: {
+      type: Function,
+      required: false,
+    },
+  },
+  methods: {
+    /**
+     * Method which  close the modal wrapper when the user click out of modal.
+     */
     closeModalWrapper(event) {
-      console.log(event.currentTarget);
-      console.log(event.target);
-      console.log(!!this.$options.propsData._closeFunction);
       if (event.currentTarget == event.target) {
-        if (this.$options.propsData._closeFunction) this._closeFunction();
+        if (this.$options.propsData._closingFunction) this._closingFunction();
         else {
-          /* case _closeFunction don't exists */
-          this.close();
+          /**
+           * event which changes the _hook's state if _closingFunction don't exists
+           *  */
+          this.$emit("update:hook_", !this._hook);
         }
       }
     },

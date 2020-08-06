@@ -1,5 +1,4 @@
  <template>
-  <!-- <modal-wrapper> -->
   <box-container _class="box-container jc-c">
     <div class="box-item-6 mt-100 pd-50" style="background: #000;">
       <TitleSection :title="title" />
@@ -46,7 +45,6 @@
       </form-submit>
     </div>
   </box-container>
-  <!-- </modal-wrapper> -->
 </template>
  
  <script>

@@ -2,8 +2,9 @@
   <div id="app">
     <TheHeader />
     <TheNavigation />
-    <!-- <modal-wrapper :_hook="showLoginScreen" :_closeFunction="UPDATE_LOGIN"> -->
-    <modal-wrapper :_hook="showLoginScreen">
+    <modal-wrapper :_hook="showLoginScreen" :_closingFunction="UPDATE_LOGIN">
+      <!-- <modal-wrapper :_hook="showLoginScreen"> -->
+      <!-- <modal-wrapper :_hook="showModal" :hook_.sync="showModal"> -->
       <!-- <modal-wrapper :_hook="true"> -->
       <PageLogIn />
     </modal-wrapper>
@@ -29,6 +30,7 @@ export default {
     PageLogIn,
     ModalWrapper,
   },
+
   computed: {
     ...mapState(["showLoginScreen"]),
   },

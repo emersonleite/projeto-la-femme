@@ -1,15 +1,22 @@
  <template>
   <form @submit.prevent="handleClick" :class="_class">
     <slot></slot>
-    <button type="submit" :class="_class_button">{{_text_button}}</button>
+    <common-button>Enviar</common-button>
+    <DynamicButton _valueAfterATime="teste" />
   </form>
 </template>
  
  <script>
+import CommonButton from "@/components/buttons/CommonButton.vue";
+import DynamicButton from "@/components/buttons/DynamicButton.vue";
 import axios from "axios";
 export default {
   name: "FormSubmit",
   props: ["_text_button", "_class", "_class_button", "_url", "_body"],
+  components: {
+    CommonButton,
+    DynamicButton,
+  },
   data() {
     return {
       dataFromApi_: {},

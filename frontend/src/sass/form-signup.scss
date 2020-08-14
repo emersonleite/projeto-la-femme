@@ -1,0 +1,11 @@
+.formSignup__container {
+  background: $tertiary-color;
+  border-radius: 10px;
+  /* border: solid 5px #ad9482; */
+  font-family: $primary-font;
+}
+
+.signup__button {
+  @include bigButton;
+  background-color: $primary-color;
+}

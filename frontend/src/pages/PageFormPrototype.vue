@@ -1,20 +1,18 @@
  <template>
   <box-container _class="box-container jc-c">
-    <div class="box-item-12 pd-50 formSignup__container">
+    <div class="box-item-12 mt-100 pd-50 formSignup__container">
       <TitleSection :title="title" />
       <form-submit
         _class="formSignup"
         _classLabelInput="labelInput"
         _classInputField="inputField"
         _classTextAreaInput="textAreaInput"
-        _url="http://localhost:1337/users"
-        _action="register"
+        _url="http://localhost:1337/auth/local"
+        _action="auth"
         :_model="model"
         :_fields="fields"
-        :_emittedErrors.sync="emittedErrors"
       >
         <common-button class="signup__button">enviar</common-button>
-        <warning-box v-if="emittedErrors" _class="signup__warning--message">{{emittedErrors}}</warning-box>
       </form-submit>
     </div>
   </box-container>
@@ -35,11 +33,8 @@ import CommonButton from "@/components/buttons/CommonButton.vue";
 import TitleSection from "@/components/TitleSection.vue";
 
 /* Form data */
-import model from "@/data/formSignupUser";
-import { fields } from "@/data/formSignupUser";
-
-/* Message box */
-import WarningBox from "@/components/message_box/WarningBox.vue";
+import model from "@/data/formPrototype.js";
+import { fields } from "@/data/formPrototype.js";
 
 export default {
   name: "SignupPage",
@@ -48,14 +43,12 @@ export default {
     TitleSection,
     FormSubmit,
     CommonButton,
-    WarningBox,
   },
   data() {
     return {
-      title: "Cadastro",
+      title: "forms",
       model,
       fields,
-      emittedErrors: "",
     };
   },
 };
@@ -66,15 +59,4 @@ export default {
 @import "../sass/spacing.scss";
 /* container */
 @include boxContainer(450px, 20px);
-
-.signup__warning--message {
-  border-radius: 5px;
-  width: 100%;
-  background-color: $primary-color;
-  color: #fff;
-  font-size: 1.15rem;
-  text-align: center;
-  padding: 30px 0;
-  margin-top: 40px;
-}
 </style>

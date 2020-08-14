@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "requests",
+  "info": {
+    "name": "requests"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "request_number": {
+      "type": "biginteger"
+    },
+    "request_items": {
+      "type": "text"
+    },
+    "request_amount": {
+      "type": "decimal"
+    },
+    "request_client": {
+      "type": "integer"
+    },
+    "request_session": {
+      "type": "string"
+    }
+  }
+}

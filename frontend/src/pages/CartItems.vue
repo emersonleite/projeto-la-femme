@@ -30,7 +30,9 @@
               <button class="cartItems__button--remove" @click="removeFromCart(cart, index)">X</button>
             </td>
             <td>
-              <span class="cartItems__itemName">{{item.name}}</span>
+              <span class="cartItems__itemName">
+                <router-link :to="{name: 'product', params:{id:item.id}}">{{item.name}}</router-link>
+              </span>
             </td>
             <td>
               <span class="cartItems__itemAmount">{{item.amount}}x</span>
@@ -53,6 +55,7 @@
         </tbody>
       </table>
     </div>
+    <button type="submit" @click="requestProcess">click</button>
   </div>
 </template>
  
@@ -66,24 +69,33 @@ import { mixinIncreaseDecrease, createdMixins } from "@/functions/mixins.js";
 /* Mutation, State, Getters */
 import { mapMutations, mapState, mapGetters } from "vuex";
 
+/* Request process */
+import generateSession from "@/utils/request_process/generateSession.js";
+
 export default {
   name: "CartItems",
   components: {
-    TitleSection
+    TitleSection,
   },
   mixins: [mixinIncreaseDecrease, createdMixins],
   data() {
     return {
-      title: "Meu carrinho"
+      title: "Meu carrinho",
+      session: "",
     };
   },
   methods: {
-    ...mapMutations(["UPDATE_CART"])
+    ...mapMutations(["UPDATE_CART"]),
+    async requestProcess() {
+      const data = await generateSession();
+      this.session = data.replace(/<[^>]+>|\\n+/g, "");
+      console.log(this.session);
+    },
   },
   computed: {
     ...mapState(["cart"]),
-    ...mapGetters(["totalCart"])
-  }
+    ...mapGetters(["totalCart"]),
+  },
 };
 </script>
  

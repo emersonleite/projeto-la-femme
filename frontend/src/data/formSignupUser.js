@@ -4,19 +4,56 @@ import { createObjectWithLabelsArray as createModelFrom } from "@/functions/crea
 
 export const fields = {
   f1: {
+    isInputField: true,
     type: "text",
-    label: "identifier",
+    label: "name",
+    alternativeLabel: "Nome",
+  },
+  /*  f2: {
+    isTextArea: true,
+    type: "text",
+    label: "description",
+    alternativeLabel: "Descrição",
+  }, */
+  f3: {
+    isInputField: true,
+    type: "text",
+    label: "username",
     alternativeLabel: "Nome de usuário",
-  } /** accented words  */,
-  /* f2: {
+  },
+  f4: {
+    isInputField: true,
     type: "email",
     label: "email",
-    alternativeLabel: "E-mail" */ /*   }, */
-  f3: {
+    alternativeLabel: "E-mail",
+  },
+  f5: {
+    isInputField: true,
     type: "password",
     label: "password",
-    alternativeLabel: "Senha" /** accented words  */,
+    alternativeLabel: "Senha",
   },
+  f6: {
+    isInputField: true,
+    type: "password",
+    label: "confirmedPassword",
+    alternativeLabel: "Confirmar senha",
+  },
+  /*  f6: {
+    type: "number",
+    label: "previousPrice",
+    alternativeLabel: "Preço Antigo",
+  }, */
+  /* f7: {
+    type: "number",
+    label: "cashPrice",
+    alternativeLabel: "Preço a vista",
+  }, */
+  /* f8: {
+    type: "number",
+    label: "installmentPrice",
+    alternativeLabel: "Preço a prazo",
+  }, */
 };
 
 /* export const fields = {

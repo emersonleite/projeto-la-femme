@@ -1,5 +1,5 @@
  <template>
-  <button :type="_type" :class="_class" :style="_style" @click="_handleClick">
+  <button :type="_type" :class="_class" @click="_handleClick">
     <slot></slot>
   </button>
 </template>
@@ -12,6 +12,7 @@
 export default {
   name: "CommonButton",
   computed: {
+    /* default style */
     _style() {
       return {
         border: "none",
@@ -23,6 +24,7 @@ export default {
         fontWeight: "bold",
         padding: "8px 16px",
         backgroundColor: "#4f1140",
+        /* backgroundColor: "#000", */
       };
     },
   },
@@ -50,10 +52,6 @@ export default {
 };
 </script>
  
- <style>
-</style>
-
-
 <docs>
 ```js
 new Vue({

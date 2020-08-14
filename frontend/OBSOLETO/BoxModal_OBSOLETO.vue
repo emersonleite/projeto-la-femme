@@ -10,7 +10,7 @@ import { mapMutations } from "vuex";
 export default {
   name: "BoxModal",
   methods: {
-    ...mapMutations(["UPDATE_LOGIN"]),
+    ...mapMutations(["SHOW_LOGIN_SCREEN"]),
     /* backNavigation() {
       return this.$router.go(-1);
     }, */
@@ -18,7 +18,7 @@ export default {
       console.log(event.currentTarget);
       console.log(event.target);
       if (event.currentTarget == event.target) {
-        this.UPDATE_LOGIN();
+        this.SHOW_LOGIN_SCREEN();
       }
     },
   },

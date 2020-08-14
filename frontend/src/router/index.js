@@ -6,9 +6,10 @@ import Products from "../pages/Products.vue";
 import CartItems from "../pages/CartItems.vue";
 import ProductDetail from "../pages/ProductDetail.vue";
 import SignupPage from "../pages/SignupPage.vue";
-import CadastroProdutos from "../pages/CadastroProdutos.vue";
 import PageLogIn from "../pages/PageLogIn.vue";
+import PageFormPrototype from "../pages/PageFormPrototype.vue";
 
+/* import CadastroProdutos from "../pages/CadastroProdutos.vue"; */
 /* import GetData from "../components/get_data/GetData.vue"; */
 /* import pagePrototype from "../pages/pagePrototype.vue"; */
 
@@ -17,6 +18,11 @@ Vue.use(VueRouter);
 /* const arrayRoutes = ["teste", "teste2"]; */
 
 const routes = [
+  {
+    path: "/forms",
+    name: "forms",
+    component: PageFormPrototype,
+  },
   {
     path: "/",
     name: "home",
@@ -53,11 +59,11 @@ const routes = [
     name: "page",
     component: pagePrototype,
   }, */
-  {
+  /* {
     path: "/cadastro",
     name: "cadastro",
     component: CadastroProdutos,
-  },
+  }, */
   {
     path: "/about",
     name: "About",

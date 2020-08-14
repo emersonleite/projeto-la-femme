@@ -10,7 +10,7 @@ tbody tr td {
 
 table tr th {
   font-size: 1.5rem;
-  background-color: #4f1140;
+  background-color: $tertiary-color;
   padding: 10px 15px;
 }
 
@@ -28,6 +28,9 @@ table tr th {
 
 .cartItems__button--remove {
   @include miniButtoms;
+  width: 30px;
+  height: 30px;
+
   &:hover {
     background-color: #656565;
     transform: scale(1.02);
@@ -83,6 +86,8 @@ table tr th {
 .cartItems__itemDecrease,
 .cartItems__itemIncrease {
   @include miniButtoms;
+  width: 30px;
+  height: 30px;
   font-size: 1.25rem;
   &:hover {
     transform: scale(1.07);

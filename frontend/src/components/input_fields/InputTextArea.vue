@@ -7,6 +7,7 @@
     :required="true"
     cols="30"
     rows="10"
+    :style="style"
   ></textarea>
 </template>
  
@@ -17,6 +18,13 @@ export default {
   methods: {
     modelHandler() {
       this.$emit("update:_model", event.target.value);
+    },
+  },
+  computed: {
+    style() {
+      return {
+        width: "100%",
+      };
     },
   },
 };

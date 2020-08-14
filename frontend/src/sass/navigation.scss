@@ -1,5 +1,6 @@
 /* navigation */
 .navigation {
+  font-family: $primary-font;
   background-color: $secondary-color;
   /* min-height: 150px; */
   border-bottom: solid 5px #ad9482;
@@ -37,15 +38,31 @@
     flex: 1.35;
     margin: auto 0;
     text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     .navigation__button--login {
       @include button;
       background-color: $primary-color;
       margin-left: 15px;
+      &:hover {
+        background-color: $tertiary-color;
+        transform: scale(1.07);
+      }
     }
     .navigation__button--signup {
       @include button;
-      background-color: #4f1140;
+      background-color: $tertiary-color;
+      &:hover {
+        background-color: $primary-color;
+        transform: scale(1.07);
+      }
     }
+   .navigation__user {
+     font-weight: 600;
+     color: #fff;
+     padding-left: 15px ;
+   }
   }
 }
 /* end navigation */

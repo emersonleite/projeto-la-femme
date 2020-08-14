@@ -6,3 +6,7 @@ export const _ = {
     return JSON.stringify(element);
   },
 };
+
+export function saveToLocalStorage(key, objectToSave) {
+  window.localStorage[key] = objectToSave;
+}

@@ -2,7 +2,7 @@
   <div id="app">
     <TheHeader />
     <TheNavigation />
-    <modal-wrapper :_hook="showLoginScreen" :_closingFunction="UPDATE_LOGIN">
+    <modal-wrapper :_hook="showLoginScreen" :_closingFunction="SHOW_LOGIN_SCREEN">
       <!-- <modal-wrapper :_hook="showLoginScreen"> -->
       <!-- <modal-wrapper :_hook="showModal" :hook_.sync="showModal"> -->
       <!-- <modal-wrapper :_hook="true"> -->
@@ -35,7 +35,7 @@ export default {
     ...mapState(["showLoginScreen"]),
   },
   methods: {
-    ...mapMutations(["UPDATE_LOGIN"]),
+    ...mapMutations(["SHOW_LOGIN_SCREEN"]),
   },
 };
 </script>

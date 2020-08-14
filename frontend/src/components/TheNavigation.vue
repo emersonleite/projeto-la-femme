@@ -18,11 +18,25 @@
         </router-link>
         <li class="navigation__buttons">
           <router-link
+            v-if="!loggedUser"
             tag="button"
             :to="{ path: '/signup' }"
             class="navigation__button--signup"
           >Cadastrar</router-link>
-          <button tag="button" @click="update_login" class="navigation__button--login">Log in</button>
+          <button
+            v-if="!loggedUser"
+            tag="button"
+            @click="update_login"
+            class="navigation__button--login"
+          >Log in</button>
+          <div class="navigation__user" v-else style="color: white;">
+            <p>Olá, {{loggedUser}}</p>
+          </div>
+          <common-button
+            v-if="loggedUser"
+            _class="navigation__button--logout"
+            :_handleClick="logout"
+          >sair</common-button>
         </li>
       </ul>
     </nav>
@@ -31,10 +45,11 @@
  
  <script>
 /* Structure components */
+import CommonButton from "@/components/buttons/CommonButton.vue";
 import GetData from "@/components/get_data/GetData.vue";
 
 /* Mutations */
-import { mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   data() {
@@ -45,15 +60,36 @@ export default {
   },
   components: {
     GetData,
+    CommonButton,
   },
   methods: {
-    ...mapMutations(["UPDATE_LOGIN"]),
+    ...mapMutations(["SHOW_LOGIN_SCREEN"]),
+    ...mapActions(["LOGOUT_PROCESS"]),
     update_login() {
-      this.UPDATE_LOGIN();
+      this.SHOW_LOGIN_SCREEN();
     },
+    logout() {
+      this.LOGOUT_PROCESS();
+    },
+  },
+  computed: {
+    ...mapState(["loggedUser", "roleUser"]),
   },
 };
 </script>
  
- <style>
+ <style lang="scss">
+.navigation__button--logout {
+  @include miniButtoms;
+  background-color: $primary-color;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+  margin-left: 50px;
+  padding: 8px;
+  &:hover {
+    background-color: $tertiary-color;
+    transform: scale(1.07);
+  }
+}
 </style>

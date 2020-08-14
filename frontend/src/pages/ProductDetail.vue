@@ -181,7 +181,7 @@ export default {
 .productDetail__size {
   border-radius: 4px;
   text-align: center;
-  background-color: #4f1140;
+  background-color: $tertiary-color;
   font-size: 1.5rem;
   padding: 20px 0;
   margin-bottom: 5px;
@@ -206,7 +206,7 @@ label {
   }
 }
 input:checked + label {
-  background-color: #4f1140;
+  background-color: $tertiary-color;
 }
 input[type="radio"] {
   display: none;

@@ -55,6 +55,22 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/boleto/create",
+      "handler": "boleto.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/request/create",
+      "handler": "request.create",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

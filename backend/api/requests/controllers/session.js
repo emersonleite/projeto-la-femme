@@ -4,22 +4,22 @@
 module.exports = {
   // GET /session
   create: async () => {
-    var axios = require("axios");
-    var config = {
+    const axios = require("axios");
+    const config = {
       method: "post",
       url:
         "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=emerson.bl@gmail.com&token=B50AB706F7804ECD9D1B33EC242AB5A6",
       headers: {},
     };
     const responseBody = {};
-    await axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        responseBody.data = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+    try {
+      const response = await axios(config);
+      console.log(JSON.stringify(response.data));
+      responseBody.data = response.data;
+    } catch (error) {
+      console.log(error);
+    }
     return responseBody.data;
   },
 };

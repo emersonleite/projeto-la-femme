@@ -72,7 +72,7 @@ import InputCheckbox from "@/components/input_fields/InputCheckbox.vue";
 import { saveToLocalStorage } from "@/functions/local.js";
 
 /* Generate session */
-import generateSession from "@/utils/generateSession.js";
+import getSession from "@/utils/request_process/getSession.js";
 
 export default {
   name: "FormSubmit",
@@ -196,8 +196,10 @@ export default {
             .then((response) => {
               const { user, jwt } = response.data;
               saveToLocalStorage("token", jwt);
-              this.loginProcess(user.name, user.role.name);
-              generateSession();
+              console.log(user);
+              this.loginProcess(user);
+              /* this.loginProcess(user.name, user.role.name); */
+              getSession();
             })
             .catch((error) => {
               this.emitError("senha ou usuário errados");

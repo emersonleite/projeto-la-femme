@@ -9,8 +9,13 @@ export default new Vuex.Store({
   state: {
     cart: [],
     showLoginScreen: false,
-    loggedUser: "",
-    roleUser: "",
+    loggedUser: {
+      /* user: {
+        name: "Emerson",
+        id: 1,
+      }, */
+    },
+    /* roleUser: "", */
   },
   mutations: {
     UPDATE_CART(state, payload) {
@@ -22,9 +27,9 @@ export default new Vuex.Store({
     UPDATE_USER(state, payload) {
       state.loggedUser = payload;
     },
-    UPDATE_ROLE_USER(state, payload) {
+    /* UPDATE_ROLE_USER(state, payload) {
       state.roleUser = payload;
-    },
+    }, */
   },
   getters: {
     totalCart: (state) => {
@@ -33,14 +38,14 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    LOGIN_PROCESS(context, user, roleUser) {
+    LOGIN_PROCESS(context, user) {
       context.commit("UPDATE_USER", user);
       context.commit("SHOW_LOGIN_SCREEN");
-      context.commit("UPDATE_ROLE_USER", roleUser);
+      /* context.commit("UPDATE_ROLE_USER", roleUser); */
     },
     LOGOUT_PROCESS(context) {
       context.commit("UPDATE_USER", "");
-      context.commit("UPDATE_ROLE_USER", "");
+      /* context.commit("UPDATE_ROLE_USER", ""); */
       saveToLocalStorage("token", "");
     },
   },

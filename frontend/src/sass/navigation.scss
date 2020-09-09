@@ -3,7 +3,7 @@
   font-family: $primary-font;
   background-color: $secondary-color;
   /* min-height: 150px; */
-  border-bottom: solid 5px #ad9482;
+  border-bottom: solid 5px #fff;
 }
 
 .navigation__container {
@@ -46,16 +46,16 @@
       background-color: $primary-color;
       margin-left: 15px;
       &:hover {
-        background-color: $tertiary-color;
-        transform: scale(1.07);
+        background-color: lighten($primary-color, $amount: 6);
+        transform: scale($scale-factor);
       }
     }
     .navigation__button--signup {
       @include button;
-      background-color: $tertiary-color;
+      background-color: $primary-color;
       &:hover {
-        background-color: $primary-color;
-        transform: scale(1.07);
+        background-color: lighten($primary-color, $amount: 6);
+        transform: scale($scale-factor);
       }
     }
    .navigation__user {

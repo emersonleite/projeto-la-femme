@@ -18,24 +18,27 @@
         </router-link>
         <li class="navigation__buttons">
           <router-link
-            v-if="!loggedUser"
+            v-if="!loggedUser.name"
             tag="button"
             :to="{ path: '/signup' }"
             class="navigation__button--signup"
           >Cadastrar</router-link>
           <button
-            v-if="!loggedUser"
+            v-if="!loggedUser.name"
             tag="button"
             @click="update_login"
             class="navigation__button--login"
           >Log in</button>
           <div class="navigation__user" v-else style="color: white;">
-            <p>Olá, {{loggedUser}}</p>
+            <p>
+              Olá,
+              <router-link to="/">{{loggedUser.name}}</router-link>
+            </p>
           </div>
           <common-button
-            v-if="loggedUser"
+            v-if="loggedUser.name"
             _class="navigation__button--logout"
-            :_handleClick="logout"
+            :_handleClick="logoutProcess"
           >sair</common-button>
         </li>
       </ul>
@@ -68,12 +71,12 @@ export default {
     update_login() {
       this.SHOW_LOGIN_SCREEN();
     },
-    logout() {
+    logoutProcess() {
       this.LOGOUT_PROCESS();
     },
   },
   computed: {
-    ...mapState(["loggedUser", "roleUser"]),
+    ...mapState(["loggedUser"]),
   },
 };
 </script>
@@ -89,7 +92,7 @@ export default {
   padding: 8px;
   &:hover {
     background-color: $tertiary-color;
-    transform: scale(1.07);
+    transform: scale($scale-factor);
   }
 }
 </style>

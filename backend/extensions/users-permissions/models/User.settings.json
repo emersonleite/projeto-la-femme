@@ -59,8 +59,9 @@
     "confirmedPassword": {
       "type": "password"
     },
-    "client_requests": {
-      "collection": "requests"
+    "requests": {
+      "collection": "requests",
+      "via": "user"
     }
   }
 }

@@ -2,10 +2,12 @@
   <div id="app">
     <TheHeader />
     <TheNavigation />
+    <!-- Search -->
+    <!-- <div>
+      <InputField _type="search" v-model="valor" :_model.sync="valor" />
+      <p style="color: white;">{{valor}}</p>
+    </div>-->
     <modal-wrapper :_hook="showLoginScreen" :_closingFunction="SHOW_LOGIN_SCREEN">
-      <!-- <modal-wrapper :_hook="showLoginScreen"> -->
-      <!-- <modal-wrapper :_hook="showModal" :hook_.sync="showModal"> -->
-      <!-- <modal-wrapper :_hook="true"> -->
       <PageLogIn />
     </modal-wrapper>
     <router-view></router-view>
@@ -19,16 +21,24 @@ import TheNavigation from "@/components/TheNavigation.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import ModalWrapper from "@/components/modal/ModalWrapper.vue";
 import PageLogIn from "@/pages/PageLogIn.vue";
+import addExternalScriptToPage from "@/utils/addExternalScriptToPage.js";
 import { mapState, mapMutations } from "vuex";
+/* import InputField from "@/components/input_fields/InputField.vue"; */
 
 export default {
   name: "App",
+  data() {
+    return {
+      valor: "",
+    };
+  },
   components: {
     TheHeader,
     TheNavigation,
     TheFooter,
     PageLogIn,
     ModalWrapper,
+    /* InputField, */
   },
 
   computed: {
@@ -36,6 +46,19 @@ export default {
   },
   methods: {
     ...mapMutations(["SHOW_LOGIN_SCREEN"]),
+  },
+  mounted() {
+    addExternalScriptToPage(
+      "script",
+      "src",
+      "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"
+    );
+    /* Importing external lib for parsing xml to json */
+    addExternalScriptToPage(
+      "script",
+      "src",
+      "https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/3.17.1/parser.js"
+    );
   },
 };
 </script>

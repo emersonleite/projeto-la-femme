@@ -96,7 +96,7 @@
   z-index: 1;
   &:hover {
     background-color: $secondary-color - #101010;
-    transform: scale(1.02);
+    transform: scale($scale-factor);
   }
   &:disabled {
     background-color: #707070;

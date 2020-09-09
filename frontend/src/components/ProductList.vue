@@ -90,7 +90,7 @@ export default {
   text-align: center;
   font-weight: 700;
   span {
-    color: #911e75;
+    color: $secondary-color;
     font-size: 1.25rem;
   }
 }
@@ -101,7 +101,7 @@ export default {
   padding-left: 15px;
   font-weight: 700;
   span {
-    color: #911e75;
+    color: $secondary-color;
     font-size: 1.25rem;
   }
 }

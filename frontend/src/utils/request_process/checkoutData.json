@@ -1,0 +1,8 @@
+{
+  "paymentMode": "default",
+  "paymentMethod": "boleto",
+  "receiverEmail": "emerson.bl@gmail.com",
+  "currency": "BRL",
+  "extraAmount": "1.00",
+  "notificationURL": "https://sualoja.com.br/notifica.html"
+}

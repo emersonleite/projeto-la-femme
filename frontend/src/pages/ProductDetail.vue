@@ -140,7 +140,7 @@ export default {
   text-align: center;
   &:hover {
     background-color: #656565;
-    transform: scale(1.02);
+    transform: scale($scale-factor);
     color: white;
   }
 }
@@ -188,13 +188,13 @@ export default {
 }
 
 .productDetail__sizeContainer {
-  border-bottom: solid 3px #911e75;
+  border-bottom: solid 3px $secondary-color;
   padding: 30px 0;
   margin-bottom: 50px;
 }
 
 label {
-  border: 3px solid #911e75;
+  border: 3px solid $secondary-color;
   border-radius: 3px;
   cursor: pointer;
   font-size: 2rem;
@@ -202,18 +202,18 @@ label {
   margin-left: 3px;
   padding: 2px 9px;
   &:hover {
-    background-color: #911e75;
+    background-color: $secondary-color;
   }
 }
 input:checked + label {
-  background-color: $tertiary-color;
+  background-color: $secondary-color;
 }
 input[type="radio"] {
   display: none;
 }
 
 .productDetail__installmentValue {
-  color: #911e75;
+  color: $secondary-color;
   font-size: 1.75rem;
   font-weight: 600;
 }
@@ -230,7 +230,7 @@ input[type="radio"] {
 }
 
 .productDetail__cashPrice {
-  color: #911e75;
+  color: $secondary-color;
   font-size: 1.75rem;
   font-weight: 600;
 }

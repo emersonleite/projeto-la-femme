@@ -10,7 +10,8 @@ tbody tr td {
 
 table tr th {
   font-size: 1.5rem;
-  background-color: $tertiary-color;
+  background-color: #ffffff;
+  color: $secondary-color;
   padding: 10px 15px;
 }
 
@@ -33,7 +34,7 @@ table tr th {
 
   &:hover {
     background-color: #656565;
-    transform: scale(1.02);
+    transform: scale($scale-factor);
   }
 }
 
@@ -90,9 +91,9 @@ table tr th {
   height: 30px;
   font-size: 1.25rem;
   &:hover {
-    transform: scale(1.07);
+    transform: scale($scale-factor);
     background-color: #656565;
-    transform: scale(1.02);
+    transform: scale($scale-factor);
     z-index: 99;
   }
 }

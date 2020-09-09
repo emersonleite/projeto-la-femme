@@ -20,6 +20,13 @@ export const fields = {
     alternativeLabel: "Cidade",
     value_from_api: "localidade",
   },
+  f35: {
+    isInputField: true,
+    type: "text",
+    label: "rua",
+    alternativeLabel: "Rua",
+    value_from_api: "logradouro",
+  },
   /** End Data from api in the fields */
   f1: {
     isInputField: true,

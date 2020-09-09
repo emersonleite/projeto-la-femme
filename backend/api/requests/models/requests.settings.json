@@ -9,20 +9,37 @@
     "timestamps": true
   },
   "attributes": {
-    "request_number": {
+    "code": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "paymentLink": {
+      "type": "string"
+    },
+    "cliente_id": {
       "type": "biginteger"
     },
-    "request_items": {
-      "type": "text"
-    },
-    "request_amount": {
-      "type": "decimal"
-    },
-    "request_client": {
-      "type": "integer"
-    },
-    "request_session": {
+    "items_ids": {
       "type": "string"
+    },
+    "items_description": {
+      "type": "string"
+    },
+    "items_quantities": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "biginteger"
+    },
+    "user": {
+      "via": "requests",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

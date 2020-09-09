@@ -9,12 +9,6 @@ export const fields = {
     label: "name",
     alternativeLabel: "Nome",
   },
-  /*  f2: {
-    isTextArea: true,
-    type: "text",
-    label: "description",
-    alternativeLabel: "Descrição",
-  }, */
   f3: {
     isInputField: true,
     type: "text",

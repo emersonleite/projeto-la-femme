@@ -37,7 +37,7 @@
   flex: 1;
   height: 36px;
   &:hover {
-    transform: scale(1.07);
+    transform: scale($scale-factor);
     background-color: #707070 - #101010;
     z-index: 99;
   }
@@ -59,7 +59,7 @@
   z-index: 1;
   &:hover {
     background-color: $secondary-color - #101010;
-    transform: scale(1.03);
+    transform: scale($scale-factor);
   }
   &:disabled {
     background-color: #707070;

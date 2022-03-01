@@ -15,7 +15,7 @@
     "qs": "^6.9.4",
     "sharp": "^0.25.4",
     "sqlite3": "latest",
-    "strapi": "3.0.0",
+    "strapi": "3.6.8",
     "strapi-admin": "3.0.0",
     "strapi-connector-bookshelf": "3.0.0",
     "strapi-plugin-content-manager": "3.0.0",
